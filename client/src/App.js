@@ -61,10 +61,7 @@ function App() {
         currency_rate={currency}
         oncomplete={toggle_refresh}
       />
-      <div className="totals">
-        <h4>Total Assets: </h4>
-        <p>{totalAssets}</p>
-      </div>
+      <div className="totals">Total Assets: {totalAssets}</div>
       <h3>Liabilities</h3>
       <Table
         data={liabilities}
@@ -72,10 +69,7 @@ function App() {
         currency_rate={currency}
         oncomplete={toggle_refresh}
       />
-      <div className="totals">
-        <h4>Total Liabilities: </h4>
-        <p>{totalLiabilities}</p>
-      </div>
+      <div className="totals">Total Liabilities: {totalLiabilities}</div>
     </div>
   );
 }
