@@ -55,6 +55,7 @@ function App() {
         refresh_networth={r_networth}
         total_assets={getTotalAssets}
         total_liabilities={getTotalLiabilities}
+        currency_symbol={currency_symbol}
       />
       <h3>Assets</h3>
       <Table
@@ -64,7 +65,13 @@ function App() {
         oncomplete={toggle_refresh}
         currency_symbol={currency_symbol}
       />
-      <div className="totals">Total Assets: {totalAssets}</div>
+      <div className="totals">
+        Total Assets: {currency_symbol}{" "}
+        {totalAssets
+          .toFixed(2)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+      </div>
       <h3>Liabilities</h3>
       <Table
         data={liabilities}
@@ -73,7 +80,13 @@ function App() {
         oncomplete={toggle_refresh}
         currency_symbol={currency_symbol}
       />
-      <div className="totals">Total Liabilities: {totalLiabilities}</div>
+      <div className="totals">
+        Total Liabilities: {currency_symbol}{" "}
+        {totalLiabilities
+          .toFixed(2)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+      </div>
     </div>
   );
 }

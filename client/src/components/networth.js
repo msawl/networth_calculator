@@ -7,8 +7,9 @@ function NetWorth({
   refresh_networth,
   total_assets,
   total_liabilities,
+  currency_symbol,
 }) {
-  const [networth, getNetWorth] = useState("");
+  const [networth, getNetWorth] = useState(0);
 
   console.log("currency at networth: " + currency);
 
@@ -27,8 +28,12 @@ function NetWorth({
 
   return (
     <div className="networth">
-      <h3>NetWorth:</h3>
-      <p>{networth}</p>
+      <b>NetWorth: </b>
+      {currency_symbol}&nbsp;{" "}
+      {networth
+        .toFixed(2)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
     </div>
   );
 }
