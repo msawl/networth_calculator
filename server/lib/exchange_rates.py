@@ -6,7 +6,7 @@ from lib.vars import API_KEY
 headers = {"apikey": API_KEY}
 
 
-def convert_currency(currency_from: str, currency_to: str, amount: int) -> int:
+def convert_currency() -> int:
     url = f"https://api.apilayer.com/exchangerates_data/latest?symbols=CAD,AUD,HKD,GBP,SGD,JPY,INR,EUR,AED,USD&base=USD"
     # response = requests.get(url=url, headers=headers, verify=False)
 
@@ -30,9 +30,8 @@ def convert_currency(currency_from: str, currency_to: str, amount: int) -> int:
             "USD": 1,
         },
     }
-    # TODO : Put some cache here
     return temp_result
 
 
 if __name__ == "__main__":
-    print(convert_currency("USD", "INR", 81))
+    print(convert_currency())

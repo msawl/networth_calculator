@@ -69,7 +69,7 @@ def get_exchangerate():
 @transactinons_endpoints.route("exchangerate/<currency>", methods=["GET"])
 def get_exchangerate_for_currency(currency):
 
-    response = convert_currency(currency_from="USD", currency_to="EUR", amount=1)
+    response = convert_currency()
 
     rate = response["rates"][currency]
 
