@@ -4,6 +4,7 @@ import Axios from "axios";
 import { useEffect, useState } from "react";
 import Table from "./components/table";
 import NetWorth from "./components/networth";
+import CurrencySelector from "./components/currency_selection.js";
 
 function App() {
   const [dataTable, setDataTable] = useState([]);
@@ -43,21 +44,7 @@ function App() {
   return (
     <div className="App">
       <h1>Tracking NetWorth</h1>
-      <div className="information">
-        <label for="cars">Select Currency:</label>
-        <select
-          name="currency"
-          onChange={(event) => {
-            changeCurrency(event.target.value);
-          }}
-          id="currency"
-        >
-          <option value="USD">USD</option>
-          <option value="CAD">CAD</option>
-          <option value="AUD">AUD</option>
-          <option value="INR">INR</option>
-        </select>
-      </div>
+      <CurrencySelector selection={changeCurrency} />
       <NetWorth currency={currency} refresh_networth={r_networth} />
       <h3>Asset</h3>
       <Table
