@@ -3,12 +3,14 @@ from flask_cors import CORS
 from db import db
 from data_models.transactions import initialize_db_with_prefilled_data
 from resources.transactions import transactinons_endpoints
+from lib.errors import handle_exceptions
 
 api = Flask(__name__)
 api.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 api.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 api.register_blueprint(transactinons_endpoints)
+api.register_error_handler(Exception, handle_exceptions)
 
 CORS(api)
 

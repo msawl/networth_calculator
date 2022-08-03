@@ -1,9 +1,11 @@
 from crypt import methods
 from nturl2path import url2pathname
-from re import T
-from flask import Blueprint, jsonify, request
+from re import S, T
+from flask import Blueprint, jsonify, request, make_response
 from data_models.transactions import Transactions
 from lib.exchange_rates import convert_currency
+from datetime import datetime, timedelta
+from lib.errors import SymbolNotFound
 
 
 transactinons_endpoints = Blueprint(
@@ -71,6 +73,16 @@ def get_exchangerate_for_currency(currency):
 
     response = convert_currency()
 
-    rate = response["rates"][currency]
+    try:
+        rate = response["rates"][currency]
+    except Exception as e:
+        raise SymbolNotFound(
+            f"The currrency symbol {currency} is not found in database or does not exist"
+        )
 
-    return {"rate": rate}
+    output = make_response({"rate": rate})
+    output.cache_control.max_age = 600
+    output.cache_control.must_revalidate = True
+    output.expires_at = datetime.utcnow() + timedelta(seconds=600)
+
+    return output
