@@ -1,3 +1,4 @@
 .DS_Store
 server/data.db
 client/node_modules/*
+.env
