@@ -20,12 +20,14 @@ function App() {
   }, []);
 
   const [currency, setCurrency] = useState(1);
+  const [currency_symbol, setCurrency_symbol] = useState("USD");
 
   const changeCurrency = (currency) => {
     Axios.get(
       "http://localhost:8080/my_business/exchangerate/" + currency
     ).then((response) => {
       setCurrency(response.data["rate"]);
+      setCurrency_symbol(currency);
     });
   };
 
@@ -60,6 +62,7 @@ function App() {
         column={column}
         currency_rate={currency}
         oncomplete={toggle_refresh}
+        currency_symbol={currency_symbol}
       />
       <div className="totals">Total Assets: {totalAssets}</div>
       <h3>Liabilities</h3>
@@ -68,6 +71,7 @@ function App() {
         column={column}
         currency_rate={currency}
         oncomplete={toggle_refresh}
+        currency_symbol={currency_symbol}
       />
       <div className="totals">Total Liabilities: {totalLiabilities}</div>
     </div>

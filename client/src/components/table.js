@@ -1,7 +1,7 @@
 import "./table.css";
 import Axios from "axios";
 import NetWorth from "./networth";
-function Table({ data, column, currency_rate, oncomplete }) {
+function Table({ data, column, currency_rate, oncomplete, currency_symbol }) {
   return (
     <table>
       <thead>
@@ -18,6 +18,7 @@ function Table({ data, column, currency_rate, oncomplete }) {
             column={column}
             currency_rate={currency_rate}
             oncomplete={oncomplete}
+            currency_symbol={currency_symbol}
           />
         ))}
       </tbody>
@@ -49,7 +50,13 @@ const changeData = (event, oncomplete) => {
   }
 };
 
-const TableRow = ({ item, column, currency_rate, oncomplete }) => (
+const TableRow = ({
+  item,
+  column,
+  currency_rate,
+  oncomplete,
+  currency_symbol,
+}) => (
   <tr>
     {column.map((columnItem, index) => {
       if (columnItem.heading != "id") {
@@ -60,6 +67,7 @@ const TableRow = ({ item, column, currency_rate, oncomplete }) => (
               onKeyDown={(e) => changeData(e, oncomplete)}
               dataValue={item["id"]}
             >
+              {currency_symbol} &nbsp;
               {(item[`${columnItem.value}`] * currency_rate).toFixed(2)}
             </td>
           );
