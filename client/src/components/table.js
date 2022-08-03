@@ -19,6 +19,8 @@ function Table({ data, column, currency_rate, oncomplete, currency_symbol }) {
             currency_rate={currency_rate}
             oncomplete={oncomplete}
             currency_symbol={currency_symbol}
+            style_left={{ "text-align": "left", width: "50%" }}
+            style_right={{ "text-align": "right", width: "25%" }}
           />
         ))}
       </tbody>
@@ -56,13 +58,15 @@ const TableRow = ({
   currency_rate,
   oncomplete,
   currency_symbol,
+  style_left,
+  style_right,
 }) => (
   <tr>
     {column.map((columnItem, index) => {
       if (columnItem.heading != "id") {
         if (index == 1) {
           return (
-            <td>
+            <td style={style_right}>
               {currency_symbol} &nbsp;
               <text
                 contentEditable="true"
@@ -75,7 +79,7 @@ const TableRow = ({
           );
         }
 
-        return <td>{item[`${columnItem.value}`]}</td>;
+        return <td style={style_left}>{item[`${columnItem.value}`]}</td>;
       }
     })}
   </tr>
