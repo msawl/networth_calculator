@@ -14,19 +14,20 @@ def convert_currency(currency_from: str, currency_to: str, amount: int) -> int:
 
     temp_result = {
         "success": True,
-        "timestamp": 1659336184,
+        "timestamp": 1659499444,
         "base": "USD",
-        "date": "2022-08-01",
+        "date": "2022-08-03",
         "rates": {
-            "CAD": 1.279695,
-            "AUD": 1.430501,
-            "HKD": 7.85015,
-            "GBP": 0.82045,
-            "SGD": 1.379285,
-            "JPY": 132.559498,
-            "INR": 79.174996,
-            "EUR": 0.978145,
-            "USD": 1.00,
+            "CAD": 1.285625,
+            "AUD": 1.44219,
+            "HKD": 7.85005,
+            "GBP": 0.820203,
+            "SGD": 1.380495,
+            "JPY": 132.344498,
+            "INR": 78.710103,
+            "EUR": 0.981105,
+            "AED": 3.673102,
+            "USD": 1,
         },
     }
     # TODO : Put some cache here
