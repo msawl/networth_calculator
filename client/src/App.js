@@ -41,18 +41,30 @@ function App() {
     { heading: "id", value: "id" },
   ];
 
+  const [totalAssets, getTotalAssets] = useState(0);
+  const [totalLiabilities, getTotalLiabilities] = useState(0);
+
   return (
     <div className="App">
       <h1>Tracking NetWorth</h1>
       <CurrencySelector selection={changeCurrency} />
-      <NetWorth currency={currency} refresh_networth={r_networth} />
-      <h3>Asset</h3>
+      <NetWorth
+        currency={currency}
+        refresh_networth={r_networth}
+        total_assets={getTotalAssets}
+        total_liabilities={getTotalLiabilities}
+      />
+      <h3>Assets</h3>
       <Table
         data={dataTable}
         column={column}
         currency_rate={currency}
         oncomplete={toggle_refresh}
       />
+      <div className="totals">
+        <h4>Total Assets: </h4>
+        <p>{totalAssets}</p>
+      </div>
       <h3>Liabilities</h3>
       <Table
         data={liabilities}
@@ -60,6 +72,10 @@ function App() {
         currency_rate={currency}
         oncomplete={toggle_refresh}
       />
+      <div className="totals">
+        <h4>Total Liabilities: </h4>
+        <p>{totalLiabilities}</p>
+      </div>
     </div>
   );
 }

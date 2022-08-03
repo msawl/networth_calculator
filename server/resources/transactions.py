@@ -42,14 +42,18 @@ def edit_transactinon(transaction_id):
 @transactinons_endpoints.route("transactions/networth", methods=["GET"])
 def get_networth():
     all_transactions = Transactions.get_transactions_by_type()
-    networth = 0
+
+    assets = 0
+    liabilities = 0
     for i in all_transactions["assets"]:
-        networth += i["amount"]
+        assets += i["amount"]
 
     for j in all_transactions["liabilities"]:
-        networth -= j["amount"]
+        liabilities += j["amount"]
 
-    return {"networth": networth}
+    networth = assets - liabilities
+
+    return {"networth": networth, "assets": assets, "liabilities": liabilities}
 
 
 @transactinons_endpoints.route("exchangerate", methods=["GET"])
