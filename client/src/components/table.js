@@ -62,13 +62,15 @@ const TableRow = ({
       if (columnItem.heading != "id") {
         if (index == 1) {
           return (
-            <td
-              contentEditable="true"
-              onKeyDown={(e) => changeData(e, oncomplete)}
-              dataValue={item["id"]}
-            >
+            <td>
               {currency_symbol} &nbsp;
-              {(item[`${columnItem.value}`] * currency_rate).toFixed(2)}
+              <text
+                contentEditable="true"
+                onKeyDown={(e) => changeData(e, oncomplete)}
+                dataValue={item["id"]}
+              >
+                {(item[`${columnItem.value}`] * currency_rate).toFixed(2)}
+              </text>
             </td>
           );
         }
