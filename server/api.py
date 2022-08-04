@@ -21,11 +21,9 @@ def create_tables():
     initialize_db_with_prefilled_data()
 
 
-@api.route("/hello", methods=["GET"])
-def hello():
-    return {"hello": "I am working!"}
+db.init_app(api)
 
 
 if __name__ == "__main__":
-    db.init_app(api)
+    # db.init_app(api)
     api.run(host="127.0.0.1", port=8080, debug=True)
