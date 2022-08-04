@@ -58,16 +58,6 @@ def get_networth():
     return {"networth": networth, "assets": assets, "liabilities": liabilities}
 
 
-@transactinons_endpoints.route("exchangerate", methods=["GET"])
-def get_exchangerate():
-
-    response = convert_currency(currency_from="USD", currency_to="EUR", amount=1)
-
-    rate = response["rates"]
-
-    return {"rate": rate}
-
-
 @transactinons_endpoints.route("exchangerate/<currency>", methods=["GET"])
 def get_exchangerate_for_currency(currency):
 
@@ -83,6 +73,5 @@ def get_exchangerate_for_currency(currency):
     output = make_response({"rate": rate})
     output.cache_control.max_age = 600
     output.cache_control.must_revalidate = True
-    output.expires_at = datetime.utcnow() + timedelta(seconds=600)
 
     return output
